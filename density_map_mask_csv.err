@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/home/alberto/local/TractoInferno_bundle_analysis/density_map_mask_csv.py", line 80, in <module>
+    dens_map = density_map(tract, aff, dim) 
+  File "/home/alberto/miniconda3/envs/tract/lib/python3.9/site-packages/dipy/tracking/utils.py", line 103, in density_map
+    i, j, k = inds.T
+KeyboardInterrupt
