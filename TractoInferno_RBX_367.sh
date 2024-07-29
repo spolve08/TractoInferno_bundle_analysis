@@ -33,7 +33,7 @@ do
 
     echo 'start' >> $log_file
 
-    nextflow_cmd="nextflow run ${rbx_main_path} -with-singularity ${container_scilus_path} -resume --input ${dataset_path} --atlas_directory ${atlas_rbx_path} --atlas_config ${config_path} --atlas_anat ${atlas_anat_mni} --rbx_processes 10 --processes 1 -profile large_dataset,cbrain &> ${log_file}"
+    nextflow run ${rbx_main_path} -with-singularity ${container_scilus_path} -resume --input ${dataset_path} --atlas_directory ${atlas_rbx_path} --atlas_config ${config_path} --atlas_anat ${atlas_anat_mni} --rbx_processes 10 --processes 1 -profile large_dataset,cbrain &> ${log_file}
 
     execute_and_print "${nextflow_cmd}"
     echo 'end' >> $log_file
