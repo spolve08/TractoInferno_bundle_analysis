@@ -26,7 +26,7 @@ import numpy as np
 import nibabel as nib 
 
 home_path=os.environ["HOME"] 
-repo_path=f"{home_path}/local/tracto_anomaly/"
+repo_path=f"{home_path}/local/"
 
 path_nilab_repo = home_path + "/local/nilab/"
 repo_utils_path=f"{repo_path}/utils/"
@@ -34,7 +34,7 @@ repo_utils_path=f"{repo_path}/utils/"
 sys.path.append(repo_utils_path)
 sys.path.append(path_nilab_repo)
 
-from utils_trk import map_trk_2_TRK_np_flipInvariant, rm_duplicates_streamlines_path_trk, rm_duplicates_streamlines_np, check_nps_is_the_same
+from uitils_trk import map_trk_2_TRK_np_flipInvariant, rm_duplicates_streamlines_path_trk, rm_duplicates_streamlines_np, check_nps_is_the_same
 
 
 
@@ -45,13 +45,13 @@ def dsc_tracts_streamlines(tract_1_path, tract_2_path, distCutoff_sameStramline=
     #in the same tract, there can be duplicates streamlines!!!
     #same of the streamlines can be identical!
 
-    #1. rm duplicates streamlines
+    #1. rm duplicates streamlines, streamline that overlap in the same bundle due to replication process.
     print("\nRm duplicates streamlines")
     np_unique_t1 = rm_duplicates_streamlines_path_trk(tract_1_path, sanity_check=check_rmDupl)
     np_unique_t2 = rm_duplicates_streamlines_path_trk(tract_2_path,  sanity_check=check_rmDupl)
 
     print("Compute dsc")
-
+    #number of streamline in each tract
     len_t1, len_t2 = len(np_unique_t1), len(np_unique_t2)
 
     if len_t1>=len_t2:
@@ -64,7 +64,7 @@ def dsc_tracts_streamlines(tract_1_path, tract_2_path, distCutoff_sameStramline=
         T_np=np_unique_t2
         t_np=np_unique_t1
 
-
+    #gli indici di nearest neighbour nei due bundle T,t
     dists_nn, index_nn_in_T = map_trk_2_TRK_np_flipInvariant(T_np= T_np, 
                                                              t_np = t_np)
 
@@ -89,7 +89,7 @@ def dsc_tracts_streamlines(tract_1_path, tract_2_path, distCutoff_sameStramline=
 if __name__=="__main__":
     sub="sub-1000"
     bundle="FAT_L"
-    path_tractoinferno="/home/chiara/datasets/TractoInferno_Nilab/"
+    path_tractoinferno="/home/alberto/hd14tb/TractoInferno_Nilab_DetProb"
     #let's test the functions..
 
     path_trk_1=f"{path_tractoinferno}//derivatives/bundles_extracted_from_replicated_wbts_flipping/{sub}/{sub}__FAT_L__DET_PROB__DistCutoff_15.trk"
@@ -109,5 +109,4 @@ if __name__=="__main__":
     print(f"DSC_Streamlines= {dsc_streamlines}")
     
     
-
 
