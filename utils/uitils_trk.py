@@ -121,7 +121,7 @@ def rm_duplicates_streamlines_path_trk(path_trk,  path_trk_unique=None, path_ana
     """
     print("Remove duplicates in the same tract")
     t_np, t_header, t_lengths, t_idxs = load_streamlines(path_trk, container='array', verbose=False)
-    t_np_unique = rm_duplicates_streamlines_np(t_np,  distCutoff_sameStramline=0.01)
+    t_np_unique = rm_duplicates_streamlines_np(t_np,  distCutoff_sameStramline=distCutoff_sameStramline)
 
 
     if sanity_check:
