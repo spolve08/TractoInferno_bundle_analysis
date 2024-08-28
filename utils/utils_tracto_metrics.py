@@ -82,7 +82,7 @@ def dsc_tracts_streamlines(tract_1_path, tract_2_path, distCutoff_sameStramline=
     
     assert (0<= dsc_streamlines) and ( dsc_streamlines <=1)
 
-    return dsc_streamlines, duplic_corresp
+    return dsc_streamlines
 
 
 
