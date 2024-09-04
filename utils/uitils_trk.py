@@ -32,7 +32,7 @@ home_path=os.environ["HOME"]
 repo_path=f"{home_path}/local/tracto_anomaly/"
 trk_bd_2_TRK_path=f"{repo_path}/preprocessing/trk_bundle__2___trk_WBTractography/"
 
-path_nilab_repo = home_path + "/local/nilab/"
+path_nilab_repo = home_path + "/local/tracto_anomaly/nilab/"
 repo_utils_path=f"{repo_path}/utils/"
 
 sys.path.append(repo_utils_path)
